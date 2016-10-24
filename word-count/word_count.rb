@@ -1,10 +1,11 @@
+require 'byebug'
 class Phrase
   attr_reader :word_count
 
   def initialize(words)
     @word_count = {}
-    words = words.split(" ").select { |w| w.match(/[a-z]/i) }
-    words.map { clean(word) }
+    words = words.downcase.split(/\s|,/).select { |w| w.match(/\w/i) }
+    words.map! { |w| clean_word(w) }
     words.each do |word|
       @word_count[word] = words.count(word)
     end
@@ -13,7 +14,8 @@ class Phrase
   private
 
   def clean_word(word)
-    word.match(/[a-z]+'?[a-z]+/i)
+    return word if word.match(/^\w+$/)
+    word.scan(/\w+'?\w+?/i).first
   end
 end
 
