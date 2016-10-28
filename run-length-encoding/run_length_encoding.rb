@@ -1,4 +1,3 @@
-require 'byebug'
 module RunLengthEncoding
   def self.encode(string)
     encoded_string = ""
