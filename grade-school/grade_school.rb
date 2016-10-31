@@ -1,4 +1,3 @@
-require 'byebug'
 class School
   def initialize
     @students = {}
